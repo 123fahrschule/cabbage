@@ -230,9 +230,13 @@ defmodule Cabbage.Feature do
 
           tags = Cabbage.Feature.Helpers.map_tags(scenario.tags) || []
 
+          %{module: mod, file: file, line: line} = __ENV__
+
           name =
             ExUnit.Case.register_test(
-              __ENV__,
+              mod,
+              file,
+              line,
               :scenario,
               scenario.name,
               tags
